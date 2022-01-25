@@ -5,13 +5,21 @@ squere.style.width = size +"px"; // make style in HTML
 squere.style.height = size +"px"; // make style in HTML
 number = 1;
 
-const showScroll = function() {
-console.log("scroll");
-if (size < window.innerWidth / 2) {
-size++
+let oldValue = 0
+let newValue = 0
+
+window.addEventListener('scroll', function()  { // Listener
+  newValue = window.pageYOffset;
+  if (oldValue < newValue) {
+    size++
 squere.style.width = size +"px";
 squere.style.height = size +"px";
-}
-}
-window.addEventListener('scroll', showScroll);
+  } else if (oldValue > newValue) {
+    size--
+    squere.style.width = size +"px";
+    squere.style.height = size +"px";
+  }
+  oldValue = newValue;
+});
+
 
